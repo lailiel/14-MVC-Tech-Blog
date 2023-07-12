@@ -1,10 +1,11 @@
 const router = require("express").Router();
 const { User, Post, Comment } = require("../models");
+const withAuth = require('../utils/auth')
 
-router.get("/", async (req, res) => {
+router.get("/", withAuth, async (req, res) => {
   try {
     const dbHomepageData = await Post.findAll(req.params.id);
-    const homepage = dbHomepageData.get({ plain: true });
+    const homepage = dbHomepageData;
     res.render('homepage', { homepage });
   } catch (err) {
     console.log(err);
@@ -12,6 +13,14 @@ router.get("/", async (req, res) => {
   }
 
 });
+
+router.get('/login', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/dashboard/:id');
+    return
+  }
+  res.render('login');
+})
 
 // get route for all posts
 // ----for the homepage handlebar view
@@ -22,7 +31,7 @@ router.get("/", async (req, res) => {
 //WHEN I click on the homepage option in the navigation
 // THEN I am taken to the homepage and presented with existing blog posts that include the post title and the date created
 
-router.get;
+// router.get;
 // get route for posts but the logged in version?
 
 // WHEN I am signed in to the site

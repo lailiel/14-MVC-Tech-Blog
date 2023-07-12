@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { User, Post, Comment } = require("../../models");
 
 
-router.get("")
+// router.get("")
 
 
 router.get("/post/:id", async (req, res) => {

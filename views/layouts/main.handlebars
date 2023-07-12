@@ -14,6 +14,8 @@
   </header>
   <nav>
     <a href="/">Home</a>
+    <a href="/dashboard/:id" class="btn-no-style>">Dashboard</a>
+    {{!-- attach this buttom to dashboard route --}}
     {{#if loggedIn}}
     <button id="logout" class="btn-no-style">Logout</button>
     {{else}}
