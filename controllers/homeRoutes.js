@@ -1,10 +1,18 @@
 const router = require("express").Router();
+const { User, Post, Comment } = require("../models");
 
 router.get("/", async (req, res) => {
-  res.render("homepage");
+  try {
+    const dbHomepageData = await Post.findAll(req.params.id);
+    const homepage = dbHomepageData.get({ plain: true });
+    res.render('homepage', { homepage });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+
 });
 
-router.get;
 // get route for all posts
 // ----for the homepage handlebar view
 

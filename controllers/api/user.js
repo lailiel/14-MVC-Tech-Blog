@@ -1,7 +1,23 @@
 const router = require("express").Router();
-const { User, Post } = require("../../models");
+const { User, Post, Comment } = require("../../models");
 
-router.get;
+router.get("/dashboard/:id", async (req, res) => {
+try {
+    const dbDashboardData = await User.findByPk(req.params.id, {
+      include: [
+        {
+          model: Post,
+          attributes: ["id", "content"],
+        },
+      ],
+    });
+    const dashboard = dbDashboardData.get({ plain: true });
+    res.render('dashboard', { dashboard });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
 // get all posts by user_id
 // ----user dashboard handlebars page
 
