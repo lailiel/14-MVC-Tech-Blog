@@ -5,7 +5,7 @@ const { User, Post, Comment } = require("../../models");
 // router.get("")
 
 
-router.get("/post/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const dbPostData = await Post.findByPk(req.params.id, {
       include: [
@@ -16,7 +16,7 @@ router.get("/post/:id", async (req, res) => {
       ],
     });
     const post = dbPostData.get({ plain: true });
-    res.render('post', { post });
+    res.render('post', { layout: 'main'});
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

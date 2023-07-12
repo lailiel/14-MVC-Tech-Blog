@@ -5,8 +5,12 @@ const withAuth = require('../utils/auth')
 router.get("/", withAuth, async (req, res) => {
   try {
     const dbHomepageData = await Post.findAll(req.params.id);
-    const homepage = dbHomepageData;
-    res.render('homepage', { homepage });
+    const homepage = dbHomepageData.map((project) => project.get({ plain: true }));
+    res.render('homepage', { 
+      layout: "main",
+      homepage,
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -19,7 +23,7 @@ router.get('/login', (req, res) => {
     res.redirect('/dashboard/:id');
     return
   }
-  res.render('login');
+  res.render('login'), {layout: 'main'};
 })
 
 // get route for all posts
