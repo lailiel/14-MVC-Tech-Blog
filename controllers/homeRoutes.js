@@ -2,10 +2,10 @@ const router = require("express").Router();
 const { User, Post, Comment } = require("../models");
 const withAuth = require('../utils/auth')
 
-router.get("/", withAuth, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const dbHomepageData = await Post.findAll(req.params.id);
-    const homepage = dbHomepageData.map((project) => project.get({ plain: true }));
+    const dbHomepageData = await Post.findAll();
+    const homepage = dbHomepageData.map((post) => post.get({ plain: true }));
     res.render('homepage', { 
       layout: "main",
       homepage,
@@ -15,7 +15,6 @@ router.get("/", withAuth, async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
-
 });
 
 router.get('/login', (req, res) => {
