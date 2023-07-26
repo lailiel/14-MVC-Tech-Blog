@@ -24,7 +24,9 @@ router.get('/login', (req, res) => {
     return
   }
   res.render('login'), {layout: 'main'};
-})
+});
+
+
 
 // get route for all posts
 // ----for the homepage handlebar view
