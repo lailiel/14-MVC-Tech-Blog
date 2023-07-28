@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const { User, Post, Comment } = require("../../models");
+const withAuth = require("../../utils/auth");
 
-
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
@@ -65,18 +65,16 @@ router.post("/logout", (req, res) => {
 // ----------------------------------------------------------------------------
 // dashboard of logged in user
 
-router.get("/dashboard", async (req, res) => {
+router.get("/dashboard", withAuth, async (req, res) => {
   try {
-    const dbDashboardData = await User.findByPk(req.params.id, {
-      include: [
-        {
-          model: Post,
-          attributes: ["id", "content"],
-        },
-      ],
+    const dbDashboardData = await Post.findAll({
+      where: {user_id: req.session.user_id},
+      attributes: ["id", "title", "content", "post_date"],
     });
-    const dashboard = dbDashboardData.get({ plain: true });
-    res.render("dashboard", { dashboard });
+    const dashboard = dbDashboardData.map(post => post.get({ plain: true }));
+    res.render("dashboard", { 
+      layout: "main",
+      ...dashboard });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -88,7 +86,7 @@ router.get("/dashboard", async (req, res) => {
 
 router.get("/profile/:id", async (req, res) => {
   try {
-    const dbProfileData = await User.findByPk(req.params.id, {
+    const dbProfileData = await User.findOne(req.params.id, {
       include: [
         {
           model: Post,

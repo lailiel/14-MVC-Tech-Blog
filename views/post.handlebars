@@ -1,3 +1,6 @@
+{{!-- ---------------------------- --}}
+{{!-- populates post --}}
+
 <div class="text-center">
   <h2>{{title}}</h2>
   <p>{{content}}</p>
@@ -14,6 +17,10 @@
       </div>
     </form>
 </div>
+
+{{!-- ---------------------------- --}}
+{{!-- populates post's comments --}}
+
 <div>
     {{#each Comments as |Comment| }}
         <div class="row mb-4 project">

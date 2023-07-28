@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
-    res.redirect('/dashboard/:id');
+    res.redirect('api/user/dashboard');
     return
   }
   res.render('login'), {layout: 'main'};

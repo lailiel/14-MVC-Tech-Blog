@@ -1,0 +1,46 @@
+{{!-- ---------------------------- --}}
+{{!-- post creation form --}}
+
+<h2>Create New Post</h2>
+
+<div>
+    <form class="post-form">
+      <div class="form-group">
+        <label for="post-title">Title:</label>
+        <input class="form-input" type="text" id="post-title" />
+        </div>
+        <div>
+        <label for="post-text">Content:</label>
+        <input class="form-input" type="text" id="post-text" />
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </div>
+    </form>
+</div>
+
+{{!-- ---------------------------- --}}
+{{!-- populates posts made by users --}}
+
+<h2>Previous Posts</h2>
+
+<div>
+    {{#each post as |post| }}
+        <div class="row mb-4 project">
+            <h3>
+      <a href="api/post/{{post.id}}">{{post.title}}</a>
+    </h3>
+            <div class="col-md-5">
+                <p>Created by {{post.User.name}} on {{format_date post.post_date}}</p>
+            </div>
+            <div class="col-md-7">
+               <p>
+             {{post.content}}
+             </p>
+            </div>
+        </div>
+    {{/each}}
+
+</div>
+
+{{!-- ---------------------------- --}}
