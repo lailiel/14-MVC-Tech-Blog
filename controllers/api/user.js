@@ -17,6 +17,8 @@ router.post('/', async (req, res) => {
   }
 });
 
+// ----------------------------------------------------------------------------
+
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -48,6 +50,8 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// ----------------------------------------------------------------------------
+
 router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
@@ -58,7 +62,10 @@ router.post("/logout", (req, res) => {
   }
 });
 
-router.get("/dashboard/:id", async (req, res) => {
+// ----------------------------------------------------------------------------
+// dashboard of logged in user
+
+router.get("/dashboard", async (req, res) => {
   try {
     const dbDashboardData = await User.findByPk(req.params.id, {
       include: [
@@ -70,6 +77,27 @@ router.get("/dashboard/:id", async (req, res) => {
     });
     const dashboard = dbDashboardData.get({ plain: true });
     res.render("dashboard", { dashboard });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// ----------------------------------------------------------------------------
+// profile
+
+router.get("/profile/:id", async (req, res) => {
+  try {
+    const dbProfileData = await User.findByPk(req.params.id, {
+      include: [
+        {
+          model: Post,
+          attributes: ["id", "content"],
+        },
+      ],
+    });
+    const profile = dbProfileData.get({ plain: true });
+    res.render("profile", { profile });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
