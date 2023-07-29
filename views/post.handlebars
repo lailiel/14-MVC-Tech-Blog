@@ -1,9 +1,11 @@
 {{!-- ---------------------------- --}}
 {{!-- populates post --}}
 
-<div class="text-center">
+<div class="text-center card">
+    <header>
     <h2>{{title}}</h2>
     <p>Created by <a href="/api/user/{{user_id}}">{{User.name}}</a> on  {{format_date post_date}}</p>
+    </header>
         <div>
             <p>{{content}}</p>
         </div>
@@ -29,11 +31,11 @@
 
 <div>
     {{#each Comments as |Comment| }}
-        <div class="row mb-4 project">
-            <div class="col-md-5">
+        <div class="card row mb-4 project">
+            <header class="col-md-5">
                 <p>Created by <a href="/api/user/{{Comment.User.id}}">{{Comment.User.name}}</a> on {{format_date Comment.post_date}}</p>
            
-           </div>
+           </header>
             <div class="col-md-7">
                <p>
              {{Comment.content}}

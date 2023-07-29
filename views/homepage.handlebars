@@ -1,15 +1,16 @@
 <!-- Loop over each object in the post array -->
 {{#each homepage as |post| }}
-<div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>
-      <a href="api/post/{{post.id}}">{{post.title}}</a>
-    </h2>
-    <p>Created by <a href="/api/user/{{post.user_id}}">{{post.User.name}}</a> on {{format_date post.post_date}}</p>
-
+<div class="col-md mb-4 card">
+  <div class="row-md-5 ">
+    <header>
+      <h2>
+        <a href="api/post/{{post.id}}">{{post.title}}</a>
+      </h2>
+      <p>Created by <a href="/api/user/{{post.user_id}}">{{post.User.name}}</a> on {{format_date post.post_date}}</p>
+    </header>
 
   </div>
-  <div class="col-md-7">
+  <div class="row-md-7">
     <p>
       {{post.content}}
     </p>
