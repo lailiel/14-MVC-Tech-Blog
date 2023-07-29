@@ -4,7 +4,7 @@ const postSubmitHandler = async (event) => {
     const postContent = document.querySelector("#post-content").value.trim()
 
     
-    if (newContent) {
+    if (postContent) {
         const response = await fetch('/api/post', {
             method: 'POST',
             body: JSON.stringify({
