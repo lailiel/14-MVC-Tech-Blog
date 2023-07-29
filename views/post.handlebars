@@ -2,12 +2,16 @@
 {{!-- populates post --}}
 
 <div class="text-center">
-  <h2>{{title}}</h2>
-  <p>{{content}}</p>
-  <p>Created by <a href="/api/user/{{user_id}}">{{User.name}}</a> on  {{format_date post_date}}</p>
-
-  
+    <h2>{{title}}</h2>
+    <p>Created by <a href="/api/user/{{user_id}}">{{User.name}}</a> on  {{format_date post_date}}</p>
+        <div>
+            <p>{{content}}</p>
+        </div>
 </div>
+
+{{!-- ---------------------------- --}}
+{{!-- comment posting --}}
+
 <div>
     <form class="comment-form">
       <div class="form-group">
@@ -21,7 +25,7 @@
 </div>
 
 {{!-- ---------------------------- --}}
-{{!-- populates post's comments --}}
+{{!-- populates comments --}}
 
 <div>
     {{#each Comments as |Comment| }}

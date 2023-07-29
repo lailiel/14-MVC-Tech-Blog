@@ -73,8 +73,8 @@ router.get("/dashboard", withAuth, async (req, res) => {
     });
     const dashboard = dbDashboardData.map((post) => post.get({ plain: true }));
     res.render("dashboard", { 
-      layout: "main",
-      dashboard });
+      dashboard,
+      logged_in: req.session.logged_in });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -96,7 +96,8 @@ router.get("/:id", async (req, res) => {
     const profile = dbProfileData.map((post) => post.get({ plain: true }));
     res.render("profile", { 
       layout: "main",
-      profile });
+      profile,
+      logged_in: req.session.logged_in });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

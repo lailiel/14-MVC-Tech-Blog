@@ -12,16 +12,18 @@
   <div>
   <header>
     <h1>
-      <a href= "/">Tech Blog</a>
+      Super Rad Tech Blog
     </h1>
    <nav>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/api/user/dashboard">Dashboard</a> |
+        <button class="no-button" id="homepage"><a href="/">Home</a></button>
+        <button class="no-button" id="dashboard"><a href="/api/user/dashboard">Dashboard</a></button> 
         <button class="no-button" id="logout">Logout</button>
         {{else}}
-        <a href="/login">Dashboard</a>
-        <a href="/login">Login</a>
+        <button class="no-button" id="homepage"><a href="/">Home</a></button>
+        <button class="no-button" id="dashboard"><a href="/login">Dashboard</a></button> 
+        <button class="no-button" id="login"><a href="/login">Login</a></button>
         {{/if}}
       </nav>
   </header>
