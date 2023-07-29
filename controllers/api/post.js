@@ -1,49 +1,70 @@
 const router = require("express").Router();
 const { User, Post, Comment } = require("../../models");
+const withAuth = require("../../utils/auth");
+// router.get(/)all?
 
 
-// router.get("")
+router.get('/', async (req, res) => {
+  try {
+      const postData = await Post.findAll()
+      .then((postData) => {
+          res.json(postData);
+      });
+      // console.log(postData)
+      } catch (err) {
+          console.log(err);
+          res.status(500).json(err);
+        }
+});
 
+router.post('/', withAuth, async (req, res) => {
+  if(req.session){
+      try {
+          const postData = await Post.create({
+              title: req.body.title,
+              content: req.body.content,
+              user_id: req.session.user_id
+          })
+          .then((postData) => {
+              res.json(postData)
+          });
+          } catch (err) {
+              console.log(err);
+              res.status(500).json(err);
+            }}
+            else{
+              res.redirect('/login')
+            }
+  });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", withAuth, async (req, res) => {
   try {
     const dbPostData = await Post.findByPk(req.params.id, {
       include: [
         {
           model: User,
-          attributes: ["name",],
+          attributes: ["name"],
         },
-          {
+        {
           model: Comment,
           attributes: ["id", "content", "post_id", "user_id", "post_date"],
           include: {
             model: User,
-            attributes: ["name"],
-          }
+            attributes: ["id", "name"],
+          },
         },
       ],
     });
     const post = dbPostData.get({ plain: true });
-    console.log(post)
-    res.render('post', { 
-      layout: 'main',
-      ...post });
+    console.log(post);
+    res.render("post", {
+      layout: "main",
+      ...post,
+    });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
   }
 });
-//get route for individual posts (by id)
-// ---- render route for post handlebar view
-// ^^ done
-
-// WHEN I click on an existing blog post
-// THEN I am presented with the post title, contents, post creator’s username, and date created for that post 
-// ^^ done
-
-
-// and have the option to leave a comment
-
-
 
 module.exports = router;

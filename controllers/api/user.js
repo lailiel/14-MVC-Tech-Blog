@@ -72,7 +72,6 @@ router.get("/dashboard", withAuth, async (req, res) => {
       attributes: ["id", "title", "content", "post_date"],
     });
     const dashboard = dbDashboardData.map((post) => post.get({ plain: true }));
-    console.log(dashboard)
     res.render("dashboard", { 
       layout: "main",
       dashboard });

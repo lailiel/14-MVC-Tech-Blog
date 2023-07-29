@@ -1,22 +1,23 @@
 const commentSubmitHandler = async (event) => {
-    event.preventDefault();
 
-const content = document.querySelector("#comment-text").value.trim()
-const post_id = window.location.toString().split('/')[
+const newContent = document.querySelector("#comment-text").value.trim()
+const commentPostId = window.location.toString().split('/')[
     window.location.toString().split('/').length - 1
 ];
 
-if (content) {
-    const response = await fetch('/api/comments', {
+if (newContent) {
+    const response = await fetch('/api/comment', {
         method: 'POST',
         body: JSON.stringify({
-            post_id,
-            content,
+            content: newContent,
+            post_id: commentPostId,
+            
         }),
         headers: {
             'Content-Type': 'application/json'
         }
     });
+    console.log(response)
 
     if (response.ok) {
         document.location.reload();
