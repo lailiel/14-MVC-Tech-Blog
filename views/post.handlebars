@@ -31,7 +31,7 @@
 
 <div>
     {{#each Comments as |Comment| }}
-        <div class="card row mb-4 project">
+        <div class="card row mb-4">
             <header class="col-md-5">
                 <p>Created by <a href="/api/user/{{Comment.User.id}}">{{Comment.User.name}}</a> on {{format_date Comment.post_date}}</p>
            

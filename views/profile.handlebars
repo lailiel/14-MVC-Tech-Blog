@@ -1,20 +1,20 @@
 <h2>Posts by {{profile.User.name}}</h2>
 
-<div>
-    {{#each profile as |post| }}
-        <div class="row mb-4 project">
-            <h3>
-      <a href="/api/post/{{post.id}}">{{post.title}}</a>
-    </h3>
-            <div class="col-md-5">
-                <p>Posted on {{format_date post.post_date}}</p>
-            </div>
-            <div class="col-md-7">
-               <p>
-             {{post.content}}
-             </p>
-            </div>
-        </div>
-    {{/each}}
 
-</div>
+{{#each profile as |post| }}
+    <div class="col-md mb-4 card">
+        <div class="row-md-5 mb-4">
+            <header>
+                <h3>
+                    <a href="/api/post/{{post.id}}">{{post.title}}</a>
+                </h3>
+                <p>Posted on {{format_date post.post_date}}</p>
+            </header>
+        </div>
+            <div class="col-md-7">
+                <p>
+                    {{post.content}}
+                </p>
+            </div>
+    </div>
+{{/each}}
