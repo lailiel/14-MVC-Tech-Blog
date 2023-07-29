@@ -71,10 +71,11 @@ router.get("/dashboard", withAuth, async (req, res) => {
       where: {user_id: req.session.user_id},
       attributes: ["id", "title", "content", "post_date"],
     });
-    const dashboard = dbDashboardData.map(post => post.get({ plain: true }));
+    const dashboard = dbDashboardData.map((post) => post.get({ plain: true }));
+    console.log(dashboard)
     res.render("dashboard", { 
       layout: "main",
-      ...dashboard });
+      dashboard });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
@@ -84,18 +85,19 @@ router.get("/dashboard", withAuth, async (req, res) => {
 // ----------------------------------------------------------------------------
 // profile
 
-router.get("/profile/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const dbProfileData = await User.findOne(req.params.id, {
-      include: [
-        {
-          model: Post,
-          attributes: ["id", "content"],
-        },
-      ],
+    const dbProfileData = await Post.findAll({
+      where: {user_id: req.params.id},
+      include: {
+          model: User,
+          attributes: ["name"],
+    },
     });
-    const profile = dbProfileData.get({ plain: true });
-    res.render("profile", { profile });
+    const profile = dbProfileData.map((post) => post.get({ plain: true }));
+    res.render("profile", { 
+      layout: "main",
+      profile });
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

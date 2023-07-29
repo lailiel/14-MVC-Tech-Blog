@@ -4,7 +4,9 @@
 <div class="text-center">
   <h2>{{title}}</h2>
   <p>{{content}}</p>
-  <p>Created by {{User.name}} on  {{format_date post_date}}</p>
+  <p>Created by <a href="/api/user/{{user_id}}">{{User.name}}</a> on  {{format_date post_date}}</p>
+
+  
 </div>
 <div>
     <form class="comment-form">

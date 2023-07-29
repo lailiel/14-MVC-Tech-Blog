@@ -5,7 +5,9 @@
     <h2>
       <a href="api/post/{{post.id}}">{{post.title}}</a>
     </h2>
-    <p>Created by {{post.user.name}} on {{format_date post.post_date}}</p>
+    <p>Created by <a href="/api/user/{{post.user_id}}">{{post.User.name}}</a> on {{format_date post.post_date}}</p>
+
+
   </div>
   <div class="col-md-7">
     <p>
