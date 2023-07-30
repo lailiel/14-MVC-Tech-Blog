@@ -1,4 +1,4 @@
-const { response } = require("express");
+// const { response } = require("express");
 
 const postSubmitHandler = async (event) => {
 
@@ -7,7 +7,7 @@ const postSubmitHandler = async (event) => {
 
     
     if (postTitle) {
-        const response = await fetch('/api/post', {
+        const response = await fetch('/api/post/new', {
             method: 'POST',
             body: JSON.stringify({
                 title: postTitle,
@@ -21,7 +21,7 @@ const postSubmitHandler = async (event) => {
     console.log(response)
     
     if (response.ok) {
-        document.location.reload();
+       redirected("/api/user/dashboard");
     }
     };
     }
