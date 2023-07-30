@@ -2,6 +2,9 @@ const router = require("express").Router();
 const { User, Post, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
+// ----------------------------------------------------------------------------
+// create new user
+
 router.post("/", async (req, res) => {
   try {
     const userData = await User.create(req.body);
@@ -18,6 +21,7 @@ router.post("/", async (req, res) => {
 });
 
 // ----------------------------------------------------------------------------
+// login
 
 router.post("/login", async (req, res) => {
   try {
@@ -51,6 +55,7 @@ router.post("/login", async (req, res) => {
 });
 
 // ----------------------------------------------------------------------------
+// logout
 
 router.post("/logout", (req, res) => {
   if (req.session.logged_in) {
@@ -82,9 +87,9 @@ router.get("/dashboard", withAuth, async (req, res) => {
 });
 
 // ----------------------------------------------------------------------------
-// profile
+// profile of other users
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", withAuth, async (req, res) => {
   try {
     const dbProfileData = await Post.findAll({
       where: {user_id: req.params.id},
@@ -103,25 +108,6 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-// get all posts by user_id
-// ----user dashboard handlebars page
 
-// WHEN I click on the dashboard option in the navigation
-// THEN I am taken to the dashboard and presented with any blog posts I have already created and the option to add a new blog post
-
-// router.post;
-// post route for adding new blog post
-// ----render to new-post handlebars view
-
-// WHEN I click on the button to add a new blog post
-// THEN I am prompted to enter both a title and contents for my blog post
-// WHEN I click on the button to create a new blog post
-// THEN the title and contents of my post are saved and I am taken back to an updated dashboard with my new blog post
-
-// router.update("?");
-
-// router.delete;
-// WHEN I click on one of my existing posts in the dashboard
-// THEN I am able to delete or update my post and taken back to an updated dashboard
 
 module.exports = router;

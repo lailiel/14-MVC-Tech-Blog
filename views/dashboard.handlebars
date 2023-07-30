@@ -1,7 +1,7 @@
 {{!-- ---------------------------- --}}
 {{!-- post creation form --}}
 
-<h2>Create New Post</h2>
+{{!-- <h2>Create New Post</h2>
 
 <div>
     <form class="post-form">
@@ -17,16 +17,16 @@
         <button class="btn btn-primary" type="submit">Submit</button>
       </div>
     </form>
-</div>
+</div> --}}
 
 {{!-- ---------------------------- --}}
 {{!-- populates posts made by users --}}
 
 <h2>Previous Posts</h2>
 
-<div>
+<div class="dashboard-post">
     {{#each dashboard as |post| }}
-        <div class="card col mb-4 project">
+        <div class="card col mb-4 post">
           <header>
             <h3>
               <a href="/api/post/{{post.id}}">{{post.title}}</a>
@@ -37,6 +37,10 @@
             <p>
              {{post.content}}
             </p>
+          </div>
+          <div>
+            <button class="button edit-post" type="button" data-post-id="{{post.id}}">Edit</button>
+            <button class="button delete-post" type="button" data-post-id="{{post.id}}">Delete</button>
           </div>
         </div>
     {{/each}}
