@@ -21,7 +21,21 @@ router.get('/', async (req, res) => {
 // ----------------------------------------------------------------------------
 // create new post
 
-router.post('/', withAuth, async (req, res) => {
+router.get('/new', async (req, res) => {
+  try {
+      res.render("postcreation", {
+        logged_in: req.session.logged_in
+      })
+        }
+        catch (err) {
+          console.log(err);
+          res.status(500).json(err);
+        };
+});
+
+
+router.post('/new', withAuth, async (req, res) => {
+  
   if(req.session){
       try {
           const postData = await Post.create({

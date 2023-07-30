@@ -1,10 +1,12 @@
+const { response } = require("express");
+
 const postSubmitHandler = async (event) => {
 
     const postTitle = document.querySelector("#post-title").value.trim()
     const postContent = document.querySelector("#post-content").value.trim()
 
     
-    if (postContent) {
+    if (postTitle) {
         const response = await fetch('/api/post', {
             method: 'POST',
             body: JSON.stringify({
@@ -31,31 +33,34 @@ const postSubmitHandler = async (event) => {
 
 // -------------------------------------------------------
 
-// const postUpdateHandler = async (event) => {
+const postUpdateHandler = async (event) => {
 
-//     const postTitle = document.querySelector("#post-title").value.trim()
-//     const postContent = document.querySelector("#post-content").value.trim()
+    const postTitle = document.querySelector("#edit-post-title").value.trim()
+    const postContent = document.querySelector("#edit-post-content").value.trim()
 
-//     const deletePost = event.target;
-//     const postId = deletePost.getAttribute('data-post-id');   
-//     if (postId) {
-//         const response = await fetch(`/api/post/${postId}`, {
-//             method: 'DELETE',
-//         });
+    const updatePost = event.target;
+    const postId = updatePost.getAttribute('data-post-id');   
+    if (postTitle) {
+        const response = await fetch(`/api/post/${postId}/edit`, {
+            method: 'PUT',
+            body: JSON.stringify({
+                title: postTitle,
+                content: postContent,
+                
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+    }
+    if (response.ok) {
+        document.location.reload();
+    }
+    };
 
-//     if (response.ok) {
-//         document.location.reload();
-//     }
-//     };
-//     }
-
-//     document
-//         .querySelector(".dashboard-post")
-//         .addEventListener("click", (event) => {
-//         if (event.target.classList.contains("edit-post")) {
-//           postUpdateHandler(event);
-//         }
-//       });
+    document
+    .querySelector(".post-form")
+    .addEventListener("submit", postUpdateHandler);
 
 
 
