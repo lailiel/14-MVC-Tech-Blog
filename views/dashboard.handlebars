@@ -1,7 +1,7 @@
 {{!-- ---------------------------- --}}
 {{!-- post creation form --}}
 
-{{!-- <h2>Create New Post</h2>
+<h2>Create New Post</h2>
 
 <div>
     <form class="post-form">
@@ -17,7 +17,7 @@
         <button class="btn btn-primary" type="submit">Submit</button>
       </div>
     </form>
-</div> --}}
+</div>
 
 {{!-- ---------------------------- --}}
 {{!-- populates posts made by users --}}
@@ -39,8 +39,8 @@
             </p>
           </div>
           <div>
-            <button class="button edit-post" type="button" data-post-id="{{post.id}}">Edit</button>
-            <button class="button delete-post" type="button" data-post-id="{{post.id}}">Delete</button>
+            <button class="button edit-post" ><a href="/api/post/{{post.id}}/edit">Edit</a></button>
+            <button class="button delete-post" data-post-id="{{post.id}}">Delete</button>
           </div>
         </div>
     {{/each}}

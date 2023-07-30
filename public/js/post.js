@@ -31,31 +31,31 @@ const postSubmitHandler = async (event) => {
 
 // -------------------------------------------------------
 
-const postUpdateHandler = async (event) => {
+// const postUpdateHandler = async (event) => {
 
-    const postTitle = document.querySelector("#post-title").value.trim()
-    const postContent = document.querySelector("#post-content").value.trim()
+//     const postTitle = document.querySelector("#post-title").value.trim()
+//     const postContent = document.querySelector("#post-content").value.trim()
 
-    const deletePost = event.target;
-    const postId = deletePost.getAttribute('data-post-id');   
-    if (window.confirm("Delete post?") == true && postId) {
-        const response = await fetch(`/api/post/${postId}`, {
-            method: 'DELETE',
-        });
+//     const deletePost = event.target;
+//     const postId = deletePost.getAttribute('data-post-id');   
+//     if (postId) {
+//         const response = await fetch(`/api/post/${postId}`, {
+//             method: 'DELETE',
+//         });
 
-    if (response.ok) {
-        document.location.reload();
-    }
-    };
-    }
+//     if (response.ok) {
+//         document.location.reload();
+//     }
+//     };
+//     }
 
-    document
-        .querySelector(".dashboard-post")
-        .addEventListener("click", (event) => {
-        if (event.target.classList.contains("delete-post")) {
-          postDeleteHandler(event);
-        }
-      });
+//     document
+//         .querySelector(".dashboard-post")
+//         .addEventListener("click", (event) => {
+//         if (event.target.classList.contains("edit-post")) {
+//           postUpdateHandler(event);
+//         }
+//       });
 
 
 
@@ -66,7 +66,7 @@ const postDeleteHandler = async (event) => {
 
     const deletePost = event.target;
     const postId = deletePost.getAttribute('data-post-id');   
-    if (window.confirm("Delete post?") == true && postId) {
+    if (window.confirm("Delete post?") && postId) {
         const response = await fetch(`/api/post/${postId}`, {
             method: 'DELETE',
         });
