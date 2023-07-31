@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Post, Comment } = require("../../models");
+const { User, Post, Comment } = require("../../models/index.js");
 const withAuth = require("../../utils/auth");
 
 // ----------------------------------------------------------------------------
@@ -87,7 +87,8 @@ router.get("/:id", withAuth, async (req, res) => {
 // ----------------------------------------------------------------------------
 // update post by ID
 
-router.get("/:id/edit", async (req, res) => {
+router.get("/:id/edit", withAuth, async (req, res) => {
+  if (req.session) {
   try {
     const dbPostData = await Post.findByPk(req.params.id);
     const post = dbPostData.get({ plain: true });
@@ -99,15 +100,17 @@ router.get("/:id/edit", async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
+}
 });
 
-router.put("/:id/edit", async (req, res) => {
+router.put("/:id/edit", withAuth, async (req, res) => {
+  if (req.session) {
   try {
     const editPost = await Post.update(
-      // {
-      //   title: req.body.title,
-      //   content: req.body.content,
-      // },
+      {
+        title: req.body.title,
+        content: req.body.content,
+      },
       {
         where: { id: req.params.id },
       }
@@ -115,12 +118,11 @@ router.put("/:id/edit", async (req, res) => {
     if (!editPost) {
       res.status(404).json({ message: "No post found with this ID" });
     }
-    res.json(postData);
     res.json({ message: "Post successfully updated" });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Internal server error" });
-  }
+  }}
 });
 
 // ----------------------------------------------------------------------------

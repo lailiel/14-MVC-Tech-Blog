@@ -1,7 +1,7 @@
 <h2>Edit Post</h2>
 
 <div>
-    <form class="post-form">
+    <form class="post-form" data-post-id="{{id}}">
       <div class="form-group">
         <label for="post-title-label">Title:</label>
         <input class="form-input" type="text" id="edit-post-title" value="{{title}}"/>
@@ -11,7 +11,7 @@
         <input class="form-input" type="text" id="edit-post-content" value="{{content}}"/>
       </div>
       <div class="form-group">
-        <button class="button edit-post" type="submit" data-post-id="{{post.id}}">Submit</button>
+        <button class="button edit-post" type="submit">Submit</button>
       </div>
     </form>
 </div>

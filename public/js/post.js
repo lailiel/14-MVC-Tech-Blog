@@ -38,20 +38,19 @@ const postUpdateHandler = async (event) => {
     .querySelector(".post-form")
     .getAttribute("data-post-id");
     console.log(postId)
-
   if (postId) {
     try {
       const response = await fetch(`/api/post/${postId}/edit`, {
         method: "PUT",
         body: JSON.stringify({
-          title: postTitle,
-          content: postContent,
+          "title": postTitle,
+          "content": postContent,
+          "id": postId
         }),
         headers: {
           "Content-Type": "application/json",
         },
       });
-
       if (response.ok) {
         window.location.href = "/api/user/dashboard";
       } else {
