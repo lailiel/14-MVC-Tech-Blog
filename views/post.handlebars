@@ -28,23 +28,23 @@
 
 {{!-- ---------------------------- --}}
 {{!-- populates comments --}}
-
-<div>
-    {{#each Comments as |Comment| }}
-        <div class="card row mb-4">
-            <header class="col-md-5">
-                <p>Created by <a href="/api/user/{{Comment.User.id}}">{{Comment.User.name}}</a> on {{format_date Comment.post_date}}</p>
-           
-           </header>
-            <div class="col-md-7">
-               <p>
-             {{Comment.content}}
-             </p>
-            </div>
-        </div>
-    {{/each}}
-
-</div>
-
+{{#each Comments as |Comment| }}
+  <div class="col mb-4 card">
+    <div class="row-md-5 ">
+      <header>
+        <p>Posted by 
+          <a href="/api/user/{{Comment.User.id}}">
+          {{Comment.User.name}}
+          </a> on {{format_date Comment.post_date}}
+        </p>
+      </header>
+      <div class="col-md-7">
+        <p>
+          {{Comment.content}}
+        </p>
+      </div>
+    </div>
+  </div>
+{{/each}}
 
 <script src="/js/comment.js"></script>

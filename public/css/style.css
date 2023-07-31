@@ -36,8 +36,10 @@
   } */
   
   header {
+    display: row;
     padding: 40px;
     text-align: center;
+    align-content: center;
     background: var(--primary);
     color: var(--light);
   }
@@ -87,7 +89,9 @@
   .card {
     margin: 20px;
     flex: 0;
-   
+    width: 100%;
+    display: flex;
+    flex-direction: column;
     border: 7px double var(--dark);
     border-radius: 10px;
     background-color: var(--light);
@@ -97,9 +101,12 @@
   
   .card header {
     color: var(--light);
+    display: inline-flex;
+    width: 100%;
     font-weight: bold;
     font-size: large;
     justify-content: space-between;
+    flex-direction: row;
     margin: 0;
     background-color: var(--tertiary);
     padding: 0.3rem;
@@ -118,7 +125,6 @@
   .container {
     display: flex;
     flex-flow: column wrap;
-    align-content: flex-start;
     align-items: center;
   }
   

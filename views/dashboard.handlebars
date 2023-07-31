@@ -3,7 +3,7 @@
 
 <h2>
   <a href="/api/post/new">Create New Post</a>
-  </h2>
+</h2>
 
 
 
@@ -12,9 +12,10 @@
 
 <h2>Previous Posts</h2>
 
-<div class="dashboard-post">
-    {{#each dashboard as |post| }}
-        <div class="card col mb-4 post">
+
+{{#each dashboard as |post| }}
+   <div class="card col mb-4 post dashboard-post">
+      <div class="row-md-5">
           <header>
             <h3>
               <a href="/api/post/{{post.id}}">{{post.title}}</a>
@@ -31,9 +32,10 @@
             <button class=" delete-post" data-post-id="{{post.id}}">Delete</button>
           </div>
         </div>
-    {{/each}}
+   </div>
+{{/each}}
 
-</div>
+
 
 {{!-- ---------------------------- --}}
 

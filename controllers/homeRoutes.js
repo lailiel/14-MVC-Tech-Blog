@@ -30,6 +30,13 @@ router.get('/login', (req, res) => {
   res.render('login'), {layout: 'main'};
 });
 
+router.get('/signup', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('api/user/dashboard');
+    return
+  }
+  res.render('signup'), {layout: 'main'};
+});
 
 
 // get route for all posts
