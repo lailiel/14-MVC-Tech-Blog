@@ -34,20 +34,21 @@ router.get("/new", withAuth, async (req, res) => {
 
 router.post("/new", withAuth, async (req, res) => {
   if (req.session) {
-  try { const postData = await Post.create({
-      title: req.body.title,
-      content: req.body.content,
-      user_id: req.session.user_id,
-    }).then((postData) => {
-      res.json(postData);
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }}else {
+    try {
+      const postData = await Post.create({
+        title: req.body.title,
+        content: req.body.content,
+        user_id: req.session.user_id,
+      }).then((postData) => {
+        res.json(postData);
+      });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  } else {
     res.redirect("/login");
   }
-
 });
 
 // ----------------------------------------------------------------------------
@@ -90,7 +91,6 @@ router.get("/:id/edit", async (req, res) => {
   try {
     const dbPostData = await Post.findByPk(req.params.id);
     const post = dbPostData.get({ plain: true });
-    console.log(post);
     res.render("postedit", {
       ...post,
       logged_in: req.session.logged_in,
@@ -103,18 +103,19 @@ router.get("/:id/edit", async (req, res) => {
 
 router.put("/:id/edit", async (req, res) => {
   try {
-    const editPost = await Post.update({
-      where: { id: req.params.id },
-      title: req.body.title,
-      content: req.body.content,
-    }).then((postData) => {
-      res.json(postData);
-    });
-
+    const editPost = await Post.update(
+      // {
+      //   title: req.body.title,
+      //   content: req.body.content,
+      // },
+      {
+        where: { id: req.params.id },
+      }
+    );
     if (!editPost) {
       res.status(404).json({ message: "No post found with this ID" });
     }
-
+    res.json(postData);
     res.json({ message: "Post successfully updated" });
   } catch (err) {
     console.log(err);
