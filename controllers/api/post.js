@@ -3,7 +3,7 @@ const { User, Post, Comment } = require("../../models/index.js");
 const withAuth = require("../../utils/auth");
 
 // ----------------------------------------------------------------------------
-// get all post
+// get all posts
 
 router.get("/", async (req, res) => {
   try {

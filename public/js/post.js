@@ -1,3 +1,6 @@
+// -------------------------------------------------------
+// new post
+
 const postSubmitHandler = async (event) => {
   const postTitle = document.querySelector("#post-title").value.trim();
   const postContent = document.querySelector("#post-content").value.trim();
@@ -29,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 // -------------------------------------------------------
+// update post
 
 const postUpdateHandler = async (event) => {
   const postTitle = document.querySelector("#edit-post-title").value.trim();
@@ -68,7 +72,9 @@ document.addEventListener("DOMContentLoaded", () => {
       postForm.addEventListener("submit", postUpdateHandler);
     }
   });
+
 // -------------------------------------------------------
+// delete post
 
 const postDeleteHandler = async (event) => {
   const deletePost = event.target;

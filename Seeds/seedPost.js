@@ -21,6 +21,11 @@ const postData = [
     content: "i like turtles and fish",
     user_id: 3,
   },
+  {
+    title: "Woof",
+    content: "I'm a very good dog",
+    user_id: 4,
+  },
 ];
 
 const seedPost = async () => {
