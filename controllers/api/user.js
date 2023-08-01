@@ -76,7 +76,7 @@ router.get("/dashboard", withAuth, async (req, res) => {
       where: {user_id: req.session.user_id},
       attributes: ["id", "title", "content", "post_date"],
     });
-    const dashboard = dbDashboardData.map((post) => post.get({ plain: true }));
+    const dashboard = dbDashboardData.map((post) => post.get({ plain: true })).reverse();
     res.render("dashboard", { 
       dashboard,
       logged_in: req.session.logged_in });
@@ -98,7 +98,7 @@ router.get("/:id", withAuth, async (req, res) => {
           attributes: ["name"],
     },
     });
-    const profile = dbProfileData.map((post) => post.get({ plain: true }));
+    const profile = dbProfileData.map((post) => post.get({ plain: true })).reverse();
     console.log(profile)
     res.render("profile", { 
       layout: "main",

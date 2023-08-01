@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
         attributes: ["name"],
       }
     });
-    const homepage = dbHomepageData.map((post) => post.get({ plain: true }));
+    const homepage = dbHomepageData.map((post) => post.get({ plain: true })).reverse();
     res.render('homepage', { 
       layout: "main",
       homepage,
