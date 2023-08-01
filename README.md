@@ -17,11 +17,11 @@
 
   ![Screenshot](./Assets/Screenshot-1.jpg)
 
-  [Walkthrough 1](https://drive.google.com/file/d/1-_SD-umPi-ecZG1LdsST2wdU19uFHIe4/view?usp=drive_link)
+  [Walkthrough 1](https://drive.google.com/file/d/1DYz6KnJYttE_qA549eHRdBCMYfRNSVIp/view?usp=sharing)
 
-  [Walkthrough 2](https://drive.google.com/file/d/1m3xLCwlJ-L2h_xkG8o6vcufcqI7eJ2K-/view?usp=drive_link)
+  [Walkthrough 2](https://drive.google.com/file/d/1wE12pIO5m8g_FFlr2LLPr6B9FUxogD3K/view?usp=sharing)
 
-  [Application](https://techblog7395-7f4f7ae01458.herokuapp.com/api/user/dashboard)
+  [Application](https://techblog7395-7f4f7ae01458.herokuapp.com/)
 
 
   
