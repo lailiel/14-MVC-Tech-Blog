@@ -85,12 +85,12 @@ const postDeleteHandler = async (event) => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    const post = document.querySelector(".dashboard-post");
-    if (post) {
+    const posts = document.querySelectorAll(".dashboard-post");
+    posts.forEach((post) => {
       post.addEventListener("click", (event) => {
         if (event.target.classList.contains("delete-post")) {
           postDeleteHandler(event);
         }
       });
-    }
+    });
   });
