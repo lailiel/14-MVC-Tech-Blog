@@ -1,4 +1,5 @@
 const commentSubmitHandler = async (event) => {
+    event.preventDefault()
 
 const newContent = document.querySelector("#comment-text").value.trim()
 const commentPostId = window.location.toString().split('/')[
