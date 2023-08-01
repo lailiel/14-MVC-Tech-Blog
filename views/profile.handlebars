@@ -1,5 +1,8 @@
-<h2 id="tertiary-header">Posts by {{profile.user_id.User.name}}</h2>
-
+{{#each profile as |post| }}
+{{#if @first}}
+<h2 id="tertiary-header">Posts by {{post.User.name}}</h2>
+{{/if}}
+{{/each}}
 
 {{#each profile as |post| }}
     <div class="col mb-4 card">
