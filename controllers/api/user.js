@@ -99,7 +99,6 @@ router.get("/:id", withAuth, async (req, res) => {
     },
     });
     const profile = dbProfileData.map((post) => post.get({ plain: true })).reverse();
-    console.log(profile)
     res.render("profile", { 
       layout: "main",
       profile,
