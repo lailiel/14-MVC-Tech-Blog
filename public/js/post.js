@@ -2,6 +2,7 @@
 // new post
 
 const postSubmitHandler = async (event) => {
+  event.preventDefault()
   const postTitle = document.querySelector("#post-title").value.trim();
   const postContent = document.querySelector("#post-content").value.trim();
 
@@ -35,6 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // update post
 
 const postUpdateHandler = async (event) => {
+  event.preventDefault()
   const postTitle = document.querySelector("#edit-post-title").value.trim();
   const postContent = document.querySelector("#edit-post-content").value.trim();
 
